@@ -1,4 +1,6 @@
 A short and simple random number generator using C++11's <random> library.
+  
+Everything is contained within the **prng** namespace. No seeding is required.
 
 ## Functions
   - **number(T floor, t ceil)** returns a random number or character within the provided range
