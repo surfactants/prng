@@ -1,3 +1,5 @@
+# Pseudo-Random Numnber Generator
+
 A short and simple random number generator using C++11's <random> library.
   
 Everything is contained within the **prng** namespace. No seeding is required.
