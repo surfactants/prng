@@ -1,4 +1,4 @@
-## Pseudo-Random Number Generator
+# Pseudo-Random Number Generator
 
 A short and simple random number generator using C++11's <random> library.
   
