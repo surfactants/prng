@@ -39,7 +39,7 @@ namespace prng{
     /////////////////////////////////////////////////////////////
     /// \brief Internal function which returns the rng engine.
     ///
-    std::mt19937& engine(){
+    inline std::mt19937& engine(){
         static Engine mt;
         return mt;
     }
@@ -75,7 +75,7 @@ namespace prng{
     /////////////////////////////////////////////////////////////
     /// \brief Returns a random bool (50% chance)
     ///
-    bool boolean(){
+    inline bool boolean(){
         std::bernoulli_distribution dist;
         return dist(engine());
     }
@@ -83,7 +83,7 @@ namespace prng{
     /////////////////////////////////////////////////////////////
     /// \brief Returns a weighted bool (percent chance out of 1.f)
     ///
-    bool boolean(float chance){
+    inline bool boolean(float chance){
         return (number(0.f, 1.f) < chance);
     }
 }
