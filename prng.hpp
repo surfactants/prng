@@ -65,11 +65,11 @@ namespace prng{
     }
 
     /////////////////////////////////////////////////////////////
-    /// \brief Returns a random number within range of a container's size.
+    /// \brief Returns a random container accessor based on its size.
     ///
     template<typename size_type>
     number(size_type s){
-        return number(0, (int)s - 1);
+        return number(0u, (unsigned int)s - 1);
     }
 
     /////////////////////////////////////////////////////////////
