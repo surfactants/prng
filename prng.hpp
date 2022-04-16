@@ -84,6 +84,7 @@ namespace prng{
     /// \brief Returns a weighted bool (percent chance out of 1.f)
     ///
     inline bool boolean(float chance){
-        return (number(0.f, 1.f) < chance);
+        std::bernoulli_distribution dist(chance);
+        return dist(engine());
     }
 }
