@@ -50,7 +50,7 @@ namespace prng{
     template<typename T>
     typename std::enable_if<std::is_floating_point<T>::value, T>::type
     number(const T floor, const T ceil){
-        static std::uniform_real_distribution<T> dist(floor, ceil);
+        std::uniform_real_distribution<T> dist(floor, ceil);
         return dist(engine());
     }
 
@@ -60,7 +60,7 @@ namespace prng{
     template<typename T>
     typename std::enable_if<std::is_integral<T>::value, T>::type
     number(const T floor, const T ceil){
-        static std::uniform_int_distribution<T> dist(floor, ceil);
+        std::uniform_int_distribution<T> dist(floor, ceil);
         return dist(engine());
     }
 
