@@ -30,20 +30,28 @@
 
 #include <vector>
 
-/// prng ///
-/// \brief Pseudo-random number generation (and bools, and chars)
-///
-namespace prng{
+/* prng
+   ----
+ * number(T floor, t ceil):
+    returns a random alphanumeric value within the range [floor, ceil] (inclusive). Two specializations exist: one for floating-point types, and one for integral types.
+ * boolean(float chance = .5f):
+    returns a random bool
+ * val(std::vector&v):
+    returns a random value from the passed vector
+ * iterator(std::vector& v):
+    returns a random iterator from the passed vector
+ */
+namespace prng {
 
     /// Engine ///
     /// \brief Internal wrapper struct to seed the rng.
-    struct Engine : public std::mt19937{
+    struct Engine : public std::mt19937 {
          Engine() : std::mt19937(std::random_device()()){}
     };
 
     /// engine ///
     /// \brief Internal function which returns the rng engine.
-    inline std::mt19937& engine(){
+    inline std::mt19937& engine() {
         static Engine mt;
         return mt;
     }
@@ -54,7 +62,7 @@ namespace prng{
     /// \param T ceil
     template<typename T>
     typename std::enable_if<std::is_floating_point<T>::value, T>::type
-    number(const T floor, const T ceil){
+    number(const T floor, const T ceil) {
         std::uniform_real_distribution<T> dist(floor, ceil);
         return dist(engine());
     }
@@ -65,7 +73,7 @@ namespace prng{
     /// \param T ceil
     template<typename T>
     typename std::enable_if<std::is_integral<T>::value, T>::type
-    number(const T floor, const T ceil){
+    number(const T floor, const T ceil) {
         std::uniform_int_distribution<T> dist(floor, ceil);
         return dist(engine());
     }
@@ -74,13 +82,13 @@ namespace prng{
     /// \brief Returns a size_type between 0u and s
     /// \param size_type s
     template<typename size_type>
-    number(size_type s){
+    number(size_type s) {
         return number(0u, (unsigned int)s - 1);
     }
 
     /// boolean (50-50) ///
     /// \brief Returns a random bool (50% chance)
-    inline bool boolean(){
+    inline bool boolean() {
         std::bernoulli_distribution dist;
         return dist(engine());
     }
@@ -88,7 +96,7 @@ namespace prng{
     /// boolean (with chance) ///
     /// \brief Returns a bool by chance
     /// \param float chance - percentage of returning 'true' (out of 1.f)
-    inline bool boolean(float chance){
+    inline bool boolean(float chance) {
         std::bernoulli_distribution dist(chance);
         return dist(engine());
     }
@@ -96,16 +104,14 @@ namespace prng{
     /// val (vector<T>) ///
     /// \brief Returns a random value from the passed vector
     template <typename T>
-    T val(std::vector<T>& v)
-    {
+    T val(std::vector<T>& v) {
         return v[prng::number(v.size())];
     }
 
     /// iterator (vector<T>) ///
     /// \brief Returns a random iterator from the passed vector
     template <typename T>
-    std::vector<T>::iterator iterator(std::vector<T>& v)
-    {
+    std::vector<T>::iterator iterator(std::vector<T>& v) {
         return (v.begin() + prng::number(v.size()));
     }
 }
