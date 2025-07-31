@@ -1,8 +1,8 @@
-# Pseudo-Random Number Generator
+# prng
 
-A short and simple random number generator using C++11's <random> library.
+A simple pseudo-random number generator using C++11's <random> library.
   
-Everything is contained within the **prng** namespace. No seeding is required.
+Everything is contained within the **prng** namespace. Seeding is internal and automatic.
 
 ## Functions
   - **number(T floor, t ceil)** returns a random alphanumeric within the provided range
