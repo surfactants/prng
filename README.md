@@ -1,4 +1,6 @@
 # prng
+## About
+Written by [surfactants](https://github.com/surfactants).
 
 A simple pseudo-random number generator using C++11's <random> library.
   
